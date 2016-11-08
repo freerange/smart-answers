@@ -21,7 +21,7 @@ class SmartAnswersController < ApplicationController
 
   def show
     respond_to do |format|
-      format.html { render }
+      format.html { render page_type }
       if Rails.application.config.expose_govspeak
         format.text {
           render page_type
