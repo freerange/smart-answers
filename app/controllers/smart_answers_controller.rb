@@ -17,15 +17,17 @@ class SmartAnswersController < ApplicationController
 
   def index
     @flows = flow_registry.flows.sort_by(&:name)
-    # todo: index is broken
+    @title = 'Smart Answers Index'
   end
 
   def show
+    @title = @presenter.title
+
     respond_to do |format|
       format.html { render page_type }
       if Rails.application.config.expose_govspeak
         format.text {
-          render page_type, layout: 'smart_answers'
+          render page_type
         }
       end
     end
@@ -38,7 +40,7 @@ class SmartAnswersController < ApplicationController
       format.html {
         @graph_presenter = GraphPresenter.new(@smart_answer)
         @graph_data = @graph_presenter.to_hash
-        render layout: 'application' # todo: whay is layout necessary?
+        render layout: 'application'
       }
       format.gv {
         render text: GraphvizPresenter.new(@smart_answer).to_gv
