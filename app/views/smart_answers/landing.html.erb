@@ -1,12 +1,3 @@
-<% content_for :title do %><%= @presenter.title %><% end %>
-<% content_for :head do %>
-  <%= javascript_include_tag "application", defer: true %>
-  <%= education_navigation_variant.analytics_meta_tag.html_safe %>
-<% end %>
-
-<%= render 'govuk_component/beta_label' if should_present_new_navigation_view? %>
-<%= render partial: 'govuk_component/breadcrumbs', locals: breadcrumbs %>
-
 <% content_for :sidebar do %>
   <%= render 'related_items' %>
 <% end %>
